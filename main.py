@@ -239,17 +239,14 @@ class LinuxDoBrowser:
         self.browser.quit()
 
     def click_like(self, page):
-        try:
-            like_button = page.ele(".discourse-reactions-reaction-button")
-            if like_button:
-                logger.info("找到未点赞的帖子，准备点赞")
-                like_button.click()
-                logger.info("点赞成功")
-                time.sleep(random.uniform(1, 2))
-            else:
-                logger.info("帖子可能已经点过赞了")
-        except Exception as e:
-            logger.error(f"点赞失败: {str(e)}")
+    try:
+        btn = page.ele(".discourse-reactions-reaction-button", timeout=3)
+        if btn:
+            logger.info("找到未点赞的帖子，准备点赞")
+            btn.click()
+            time.sleep(random.uniform(1, 2))
+    except Exception as e:
+        logger.warning(f"点赞跳过（可能 DOM 刷新）: {e}")
 
     def print_connect_info(self):
         logger.info("获取连接信息")
