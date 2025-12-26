@@ -181,7 +181,7 @@ class LinuxDoBrowser:
             logger.error("未找到主题帖")
             return False
 
-        count = min(25, len(topic_list))  # 🔧 MOD
+        count = min(28, len(topic_list))  # 🔧 MOD
         logger.info(f"发现 {len(topic_list)} 个主题帖，随机选择{count}个")
         for topic in random.sample(topic_list, count):
             self.click_one_topic(topic.attr("href"))
@@ -199,7 +199,7 @@ class LinuxDoBrowser:
     def browse_post(self, page):
         prev_url = None
         for _ in range(10):
-            scroll_distance = random.randint(550, 650)
+            scroll_distance = random.randint(500, 800)
             logger.info(f"向下滚动 {scroll_distance} 像素...")
             page.run_js(f"window.scrollBy(0, {scroll_distance})")
             logger.info(f"已加载页面: {page.url}")
@@ -218,7 +218,7 @@ class LinuxDoBrowser:
                 logger.success("已到达页面底部，退出浏览")
                 break
 
-            wait_time = random.uniform(10, 15)  # 🔧 MOD
+            wait_time = random.uniform(4, 6)  # 🔧 MOD
             logger.info(f"等待 {wait_time:.2f} 秒...")
             time.sleep(wait_time)
 
