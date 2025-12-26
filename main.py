@@ -218,7 +218,7 @@ class LinuxDoBrowser:
                 logger.success("已到达页面底部，退出浏览")
                 break
 
-            wait_time = random.uniform(4.5, 5.5)  # 🔧 MOD
+            wait_time = random.uniform(10, 15)  # 🔧 MOD
             logger.info(f"等待 {wait_time:.2f} 秒...")
             time.sleep(wait_time)
 
